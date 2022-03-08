@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import express from 'express';
 import programasRutas from '../../rutas/ProgramasRutas';
 import semestresRutas from '../../rutas/SemestresRutas';
+import materiasRutas from '../../rutas/MateriasRutas';
 
 
 class Servidor {
@@ -23,8 +24,9 @@ class Servidor {
 
     }
     public activarRutas(): void {
-        this.app.use('/appi/programas',programasRutas);
-        this.app.use('/appi/semestres',semestresRutas);
+        this.app.use('/appi/programas', programasRutas);
+        this.app.use('/appi/semestres', semestresRutas);
+        this.app.use('/appi/materias', materiasRutas);
 
     }
     public iniciar(): void {
