@@ -25,13 +25,26 @@ class MateriasDAO {
             if(respuesta.cod_materia != 0){
                 res.status(200).json({respuesta:'Materia Creada', nuevoCodigo: respuesta.cod_materia  })
             }else{
+                console.log(respuesta)
                 res.status(402).json({respuesta:'Error creando registro, probablmente este repetido'});
             }
         })
         .catch((mierror)=>{
-            console.log('Pailas', mierror);
-            res.status(400).json({respuesta:'Error en las consultas '});
+            console.log( mierror);
+            res.status(400).json({respuesta:'Error en las consultas ',mierror});
         });
+    }
+    protected static async encontrarMateriaPorId(sqlBuscar: string, parametros: any, res: Response): Promise<any> {
+
+        await pool.one(sqlBuscar, parametros)
+            .then((dato) => {
+                console.log(dato);
+                res.status(200).json({ respuesta: dato });
+            })
+            .catch((mierror) => {
+                console.log(mierror)
+                return res.status(400).json({ msg: 'Error buscando materia' });
+            });
     }
 }
 export default MateriasDAO;

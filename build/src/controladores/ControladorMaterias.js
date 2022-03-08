@@ -15,6 +15,11 @@ class ControladorMaterias extends MateriasDAO_1.default {
         const parametro = [nombre, referencia];
         ControladorMaterias.crearMaterias(materias_sql_1.SQL_MATERIA.CONFIRMAR, materias_sql_1.SQL_MATERIA.CREAR, parametro, res);
     }
+    busqueUno(req, res) {
+        const codigito = req.params.elCodigo;
+        const parametro = [codigito];
+        ControladorMaterias.encontrarMateriaPorId(materias_sql_1.SQL_MATERIA.CARGAR, parametro, res);
+    }
 }
 const controladorMaterias = new ControladorMaterias();
 exports.default = controladorMaterias;

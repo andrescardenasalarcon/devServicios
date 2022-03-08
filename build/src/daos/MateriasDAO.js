@@ -42,12 +42,26 @@ class MateriasDAO {
                     res.status(200).json({ respuesta: 'Materia Creada', nuevoCodigo: respuesta.cod_materia });
                 }
                 else {
+                    console.log(respuesta);
                     res.status(402).json({ respuesta: 'Error creando registro, probablmente este repetido' });
                 }
             })
                 .catch((mierror) => {
-                console.log('Pailas', mierror);
-                res.status(400).json({ respuesta: 'Error en las consultas ' });
+                console.log(mierror);
+                res.status(400).json({ respuesta: 'Error en las consultas ', mierror });
+            });
+        });
+    }
+    static encontrarMateriaPorId(sqlBuscar, parametros, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield conexionBD_1.default.one(sqlBuscar, parametros)
+                .then((dato) => {
+                console.log(dato);
+                res.status(200).json({ respuesta: dato });
+            })
+                .catch((mierror) => {
+                console.log(mierror);
+                return res.status(400).json({ msg: 'Error buscando materia' });
             });
         });
     }

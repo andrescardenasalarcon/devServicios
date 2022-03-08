@@ -4,5 +4,8 @@ export const SQL_MATERIA = {
     CREAR: 'INSERT INTO materias(nombre_materia,referenacia_materia) VALUES($1,$2) RETURNING cod_materia',
 
     CONFIRMAR: 'SELECT COUNT(cod_materia) as Cantidad FROM materias m \
-    WHERE m.nombre_materia = lower($1)'
+    WHERE m.nombre_materia = lower($1)',
+    
+    CARGAR: 'SELECT cod_materia, nombre_materia FROM materias WHERE cod_materia = $1',
+
 }

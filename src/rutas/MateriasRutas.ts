@@ -10,6 +10,7 @@ class MateriasRutas {
     public configuracion() {
         this.rutaMateriasApi.get('/listamaterias', controladorMaterias.demeLasMaterias);
         this.rutaMateriasApi.post('/crear', controladorMaterias.grabarMateria);
+        this.rutaMateriasApi.post('/listamaterias/:elCodigo', controladorMaterias.busqueUno);
     }
 }
 const materiasRutas = new MateriasRutas();
