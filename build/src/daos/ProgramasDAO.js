@@ -54,5 +54,31 @@ class ProgramasDAO {
             }
         });
     }
+    static encontrarPorId(sqlBuscar, parametros, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield conexionBD_1.default.one(sqlBuscar, parametros)
+                .then((dato) => {
+                console.log(dato);
+                res.status(200).json({ respuesta: dato });
+            })
+                .catch((mierror) => {
+                console.log(mierror);
+                return res.status(400).json({ msg: 'Error buscando progrmaa' });
+            });
+        });
+    }
+    static eliminarPorId(sqlBuscar, parametros, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield conexionBD_1.default.result(sqlBuscar, parametros)
+                .then((dato) => {
+                console.log(dato);
+                res.status(200).json({ respuesta: dato.rowCount });
+            })
+                .catch((mierror) => {
+                console.log(mierror);
+                return res.status(400).json({ msg: 'Error borrando progrmaa' });
+            });
+        });
+    }
 }
 exports.default = ProgramasDAO;

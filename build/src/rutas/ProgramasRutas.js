@@ -11,8 +11,10 @@ class ProgramasRutas {
         this.configuracion();
     }
     configuracion() {
-        this.rutaProgramasApi.get('/listaprogramas', ProgramaControlador_1.default.demeLosProgramas);
+        this.rutaProgramasApi.get('/obtenerprograma', ProgramaControlador_1.default.demeLosProgramas);
         this.rutaProgramasApi.post('/programas/crear', ProgramaControlador_1.default.averGrabalo);
+        this.rutaProgramasApi.get('/obtenerprograma/:elCodigo', ProgramaControlador_1.default.busqueUno);
+        this.rutaProgramasApi.delete('/obtenerprograma/:elCodigo', ProgramaControlador_1.default.borrarUno);
     }
 }
 const programasRutas = new ProgramasRutas();

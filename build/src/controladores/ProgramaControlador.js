@@ -14,6 +14,17 @@ class ControladorProgramas extends ProgramasDAO_1.default {
         const parametro = [nombre];
         ControladorProgramas.crearProgramas(programas_sql_1.SQL_PROGRAMA.CONFIRMAR, programas_sql_1.SQL_PROGRAMA.CREAR, parametro, res);
     }
+    ;
+    busqueUno(req, res) {
+        const codigito = req.params.elCodigo;
+        const parametro = [codigito];
+        ControladorProgramas.encontrarPorId(programas_sql_1.SQL_PROGRAMA.CARGAR, parametro, res);
+    }
+    borrarUno(req, res) {
+        const codigito = req.params.elCodigo;
+        const parametro = [codigito];
+        ControladorProgramas.eliminarPorId(programas_sql_1.SQL_PROGRAMA.BORRAR, parametro, res);
+    }
 }
 const controladorProgramas = new ControladorProgramas();
 exports.default = controladorProgramas;
