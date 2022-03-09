@@ -26,7 +26,7 @@ class ProgramasDAO {
                 .then((respuesta) => {
                     //aca va si todo va bien
                     if (respuesta.cod_programa != 0) {
-                        res.status(200).json({ respuesta: 'Partido Creado', nuevoCodigo: respuesta.cod_programa });
+                        res.status(200).json({ respuesta: 'Programa Creado', nuevoCodigo: respuesta.cod_programa });
                     } else {
                         res.status(402).json({ respuesta: 'Error creando registro, probablemente esta repetido' });
 
@@ -49,7 +49,7 @@ class ProgramasDAO {
             })
             .catch((mierror) => {
                 console.log(mierror)
-                return res.status(400).json({ msg: 'Error buscando progrmaa' });
+                return res.status(400).json({ msg: 'Error buscando programa' });
             });
     }
     protected static async eliminarPorId(sqlBuscar: string, parametros: any, res: Response): Promise<any> {

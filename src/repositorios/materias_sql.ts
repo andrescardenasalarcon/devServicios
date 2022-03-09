@@ -8,4 +8,6 @@ export const SQL_MATERIA = {
     
     CARGAR: 'SELECT cod_materia, nombre_materia FROM materias WHERE cod_materia = $1',
 
+    BORRAR: 'DELETE FROM materias WHERE cod_materia = $1',
+
 }
