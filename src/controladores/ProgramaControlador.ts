@@ -7,11 +7,6 @@ class ControladorProgramas extends ProgramasDAO {
         ControladorProgramas.obtenerProgramas(SQL_PROGRAMA.TODO, [], res);
     }
 
-    public averGrabalo(req: Request, res: Response): void {
-        const nombre = req.body.nombrePrograma;
-        const parametro = [nombre]
-        ControladorProgramas.crearProgramas(SQL_PROGRAMA.CONFIRMAR, SQL_PROGRAMA.CREAR, parametro, res);
-    };
     public busqueUno(req:Request,res:Response):void{
         const codigito = req.params.elCodigo;
         const parametro = [codigito];

@@ -9,12 +9,6 @@ class ControladorProgramas extends ProgramasDAO_1.default {
     demeLosProgramas(req, res) {
         ControladorProgramas.obtenerProgramas(programas_sql_1.SQL_PROGRAMA.TODO, [], res);
     }
-    averGrabalo(req, res) {
-        const nombre = req.body.nombrePrograma;
-        const parametro = [nombre];
-        ControladorProgramas.crearProgramas(programas_sql_1.SQL_PROGRAMA.CONFIRMAR, programas_sql_1.SQL_PROGRAMA.CREAR, parametro, res);
-    }
-    ;
     busqueUno(req, res) {
         const codigito = req.params.elCodigo;
         const parametro = [codigito];

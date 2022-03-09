@@ -26,34 +26,6 @@ class ProgramasDAO {
             });
         });
     }
-    static crearProgramas(sqlConfirmar, sqlCrear, parametros, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            {
-                yield conexionBD_1.default.task((consulta) => __awaiter(this, void 0, void 0, function* () {
-                    const dato = yield consulta.one(sqlConfirmar, parametros);
-                    if (dato.cantidad == 0) {
-                        return yield consulta.one(sqlCrear, parametros);
-                    }
-                    else {
-                        return { cod_programa: 0 };
-                    }
-                }))
-                    .then((respuesta) => {
-                    //aca va si todo va bien
-                    if (respuesta.cod_programa != 0) {
-                        res.status(200).json({ respuesta: 'Programa Creado', nuevoCodigo: respuesta.cod_programa });
-                    }
-                    else {
-                        res.status(402).json({ respuesta: 'Error creando registro, probablemente esta repetido' });
-                    }
-                })
-                    .catch((mierror) => {
-                    console.log('Pailas', mierror);
-                    res.status(400).json({ respuesta: 'Error en las cosnsultas' });
-                });
-            }
-        });
-    }
     static encontrarPorId(sqlBuscar, parametros, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield conexionBD_1.default.one(sqlBuscar, parametros)

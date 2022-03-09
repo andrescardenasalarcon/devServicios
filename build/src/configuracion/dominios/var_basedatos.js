@@ -5,5 +5,5 @@ exports.default = {
     host: 'localhost',
     database: 'bd_programa',
     password: '123456',
-    port: 5433,
+    port: 5432,
 };
