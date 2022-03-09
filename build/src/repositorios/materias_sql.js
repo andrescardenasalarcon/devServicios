@@ -7,4 +7,5 @@ exports.SQL_MATERIA = {
     CONFIRMAR: 'SELECT COUNT(cod_materia) as Cantidad FROM materias m \
     WHERE m.nombre_materia = lower($1)',
     CARGAR: 'SELECT cod_materia, nombre_materia FROM materias WHERE cod_materia = $1',
+    BORRAR: 'DELETE FROM materias WHERE cod_materia = $1',
 };

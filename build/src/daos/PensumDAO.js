@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const conexionBD_1 = __importDefault(require("../configuracion/conexion/conexionBD"));
-class ProgramasDAO {
-    static obtenerProgramas(sqlConsulta, parametros, res) {
+class PensumDAO {
+    static obtenerPensum(sqlConsulta, parametros, res) {
         return __awaiter(this, void 0, void 0, function* () {
             conexionBD_1.default.result(sqlConsulta, parametros)
                 .then((resultado) => {
@@ -22,36 +22,34 @@ class ProgramasDAO {
             })
                 .catch((mierror) => {
                 console.log('Error: ', mierror);
-                res.status(400).json({ respuesta: 'Algo salió mal en Programas' });
+                res.status(400).json({ respuesta: 'Algo salió mal en Pensum' });
             });
         });
     }
-    static crearProgramas(sqlConfirmar, sqlCrear, parametros, res) {
+    static crearPensum(sqlConfirmar, sqlCrear, parametros, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            {
-                yield conexionBD_1.default.task((consulta) => __awaiter(this, void 0, void 0, function* () {
-                    const dato = yield consulta.one(sqlConfirmar, parametros);
-                    if (dato.cantidad == 0) {
-                        return yield consulta.one(sqlCrear, parametros);
-                    }
-                    else {
-                        return { cod_programa: 0 };
-                    }
-                }))
-                    .then((respuesta) => {
-                    //aca va si todo va bien
-                    if (respuesta.cod_programa != 0) {
-                        res.status(200).json({ respuesta: 'Programa Creado', nuevoCodigo: respuesta.cod_programa });
-                    }
-                    else {
-                        res.status(402).json({ respuesta: 'Error creando registro, probablemente esta repetido' });
-                    }
-                })
-                    .catch((mierror) => {
-                    console.log('Pailas', mierror);
-                    res.status(400).json({ respuesta: 'Error en las cosnsultas' });
-                });
-            }
+            yield conexionBD_1.default.task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                const dato = yield consulta.one(sqlConfirmar, parametros);
+                if (dato.cantidad == 0) {
+                    return yield consulta.one(sqlCrear, parametros);
+                }
+                else {
+                    return { codPensum: 0 };
+                }
+            }))
+                .then((respuesta) => {
+                if (respuesta.codPensum != 0) {
+                    //ese nuevoCodigo yo le doy el nombre que quiera a esa variable
+                    res.status(200).json({ respuesta: 'Pensum Creado', nuevoCodigo: respuesta.codPensum });
+                }
+                else {
+                    res.status(402).json({ respuesta: 'Error creadno registro, probablemente se encuentre repetido' });
+                }
+            })
+                .catch((mierror) => {
+                console.log('Error', mierror);
+                res.status(400).json({ respuesta: 'Error en las consultas' });
+            });
         });
     }
     static encontrarPorId(sqlBuscar, parametros, res) {
@@ -63,7 +61,7 @@ class ProgramasDAO {
             })
                 .catch((mierror) => {
                 console.log(mierror);
-                return res.status(400).json({ msg: 'Error buscando programa' });
+                return res.status(400).json({ msg: 'Error buscando Pensum' });
             });
         });
     }
@@ -76,9 +74,9 @@ class ProgramasDAO {
             })
                 .catch((mierror) => {
                 console.log(mierror);
-                return res.status(400).json({ msg: 'Error borrando progrmaa' });
+                return res.status(400).json({ msg: 'Error borrando pensum' });
             });
         });
     }
 }
-exports.default = ProgramasDAO;
+exports.default = PensumDAO;

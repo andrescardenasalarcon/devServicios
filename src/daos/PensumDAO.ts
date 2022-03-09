@@ -20,14 +20,14 @@ class PensumDAO {
             if (dato.cantidad == 0) {
                 return await consulta.one(sqlCrear, parametros);
             } else {
-                return { cod_pensum: 0 };
+                return { codPensum: 0 };
             }
 
         })
         .then((respuesta)=>{
-            if(respuesta.cod_pensum != 0){
+            if(respuesta.codPensum != 0){
                 //ese nuevoCodigo yo le doy el nombre que quiera a esa variable
-                res.status(200).json({respuesta: 'Pensum Creado', nuevoCodigo: respuesta.cod_pensum});                
+                res.status(200).json({respuesta: 'Pensum Creado', nuevoCodigo: respuesta.codPensum});                
             }else{
                 res.status(402).json({respuesta:'Error creadno registro, probablemente se encuentre repetido'});
 
