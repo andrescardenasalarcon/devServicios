@@ -1,5 +1,9 @@
 import { Router } from "express";
-import controladorPensums from "../controladores/ControladorPensums";
+import pensumsControlador_Actualizar from "../controladores/pensums/PensumsControlador_Actualizar";
+import pensumsControlador_Borrar from "../controladores/pensums/PensumsControlador_Borrar";
+import pensumsControlador_Buscar from "../controladores/pensums/PensumsControlador_Buscar";
+import pensumsControlador_Crear from "../controladores/pensums/PensumsControlador_Crear";
+import pensumsControlador_Mostrar from "../controladores/pensums/PensumsControlador_Mostrar";
 
 class PensumRutas{
     public rutaPensumApi: Router;
@@ -8,10 +12,11 @@ class PensumRutas{
         this.configuracion();
     } 
     public configuracion(){
-        this.rutaPensumApi.get('/obtenerpensum',controladorPensums.demeLosPensums);
-        this.rutaPensumApi.post('/pensums/crear',controladorPensums.grabarPensum);
-        this.rutaPensumApi.get('/obtenerpensum/:elCodigo',controladorPensums.busqueUno);
-        this.rutaPensumApi.delete('/obtenerpensum/:elCodigo',controladorPensums.borrarUno);
+        this.rutaPensumApi.get('/obtenerpensum',pensumsControlador_Mostrar.mostrarPensums);
+        this.rutaPensumApi.post('/crear',pensumsControlador_Crear.grabarPensum);
+        this.rutaPensumApi.get('/obtenerpensum/:elCodigo',pensumsControlador_Buscar.buscarPensums);
+        this.rutaPensumApi.delete('/obtenerpensum/:elCodigo',pensumsControlador_Borrar.borrarUnPensum);
+        this.rutaPensumApi.put('/actualizar',pensumsControlador_Actualizar.actualizarPensums);
     }
 
 }

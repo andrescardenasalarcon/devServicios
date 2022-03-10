@@ -4,17 +4,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const ControladorPensums_1 = __importDefault(require("../controladores/ControladorPensums"));
+const PensumsControlador_Actualizar_1 = __importDefault(require("../controladores/pensums/PensumsControlador_Actualizar"));
+const PensumsControlador_Borrar_1 = __importDefault(require("../controladores/pensums/PensumsControlador_Borrar"));
+const PensumsControlador_Buscar_1 = __importDefault(require("../controladores/pensums/PensumsControlador_Buscar"));
+const PensumsControlador_Crear_1 = __importDefault(require("../controladores/pensums/PensumsControlador_Crear"));
+const PensumsControlador_Mostrar_1 = __importDefault(require("../controladores/pensums/PensumsControlador_Mostrar"));
 class PensumRutas {
     constructor() {
         this.rutaPensumApi = (0, express_1.Router)();
         this.configuracion();
     }
     configuracion() {
-        this.rutaPensumApi.get('/obtenerpensum', ControladorPensums_1.default.demeLosPensums);
-        this.rutaPensumApi.post('/pensums/crear', ControladorPensums_1.default.grabarPensum);
-        this.rutaPensumApi.get('/obtenerpensum/:elCodigo', ControladorPensums_1.default.busqueUno);
-        this.rutaPensumApi.delete('/obtenerpensum/:elCodigo', ControladorPensums_1.default.borrarUno);
+        this.rutaPensumApi.get('/obtenerpensum', PensumsControlador_Mostrar_1.default.mostrarPensums);
+        this.rutaPensumApi.post('/crear', PensumsControlador_Crear_1.default.grabarPensum);
+        this.rutaPensumApi.get('/obtenerpensum/:elCodigo', PensumsControlador_Buscar_1.default.buscarPensums);
+        this.rutaPensumApi.delete('/obtenerpensum/:elCodigo', PensumsControlador_Borrar_1.default.borrarUnPensum);
+        this.rutaPensumApi.put('/actualizar', PensumsControlador_Actualizar_1.default.actualizarPensums);
     }
 }
 const pensumRutas = new PensumRutas();
