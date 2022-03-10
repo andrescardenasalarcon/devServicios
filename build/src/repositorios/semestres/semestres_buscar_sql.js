@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SQL_MATERIA_BUSCAR = void 0;
-exports.SQL_MATERIA_BUSCAR = {
-    CARGAR: 'SELECT cod_materia, nombre_materia FROM materias WHERE cod_materia = $1',
+exports.SQL_SEMESTRE_BUSCAR = void 0;
+exports.SQL_SEMESTRE_BUSCAR = {
+    BUSCAR: 'SELECT cod_semestre, nombre_semestre FROM semestres WHERE cod_semestre = $1',
 };
