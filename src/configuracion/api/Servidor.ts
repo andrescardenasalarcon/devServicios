@@ -5,6 +5,7 @@ import programasRutas from '../../rutas/ProgramasRutas';
 import semestresRutas from '../../rutas/SemestresRutas';
 import materiasRutas from '../../rutas/MateriasRutas';
 import pensumRutas from '../../rutas/PensumRutas';
+import accesosRutas from '../../rutas/AccesosRutas';
 
 
 class Servidor {
@@ -29,6 +30,7 @@ class Servidor {
         this.app.use('/appi/semestres', semestresRutas);
         this.app.use('/appi/materias', materiasRutas);
         this.app.use('/appi/pensum', pensumRutas);
+        this.app.use('/appi/accesos', accesosRutas);
 
     }
     public iniciar(): void {

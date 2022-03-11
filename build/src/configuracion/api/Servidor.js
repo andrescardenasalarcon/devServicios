@@ -10,6 +10,7 @@ const ProgramasRutas_1 = __importDefault(require("../../rutas/ProgramasRutas"));
 const SemestresRutas_1 = __importDefault(require("../../rutas/SemestresRutas"));
 const MateriasRutas_1 = __importDefault(require("../../rutas/MateriasRutas"));
 const PensumRutas_1 = __importDefault(require("../../rutas/PensumRutas"));
+const AccesosRutas_1 = __importDefault(require("../../rutas/AccesosRutas"));
 class Servidor {
     constructor() {
         this.app = (0, express_1.default)();
@@ -28,6 +29,7 @@ class Servidor {
         this.app.use('/appi/semestres', SemestresRutas_1.default);
         this.app.use('/appi/materias', MateriasRutas_1.default);
         this.app.use('/appi/pensum', PensumRutas_1.default);
+        this.app.use('/appi/accesos', AccesosRutas_1.default);
     }
     iniciar() {
         this.app.listen(this.app.get('PORT'), () => {

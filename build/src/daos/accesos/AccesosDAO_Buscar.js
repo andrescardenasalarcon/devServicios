@@ -13,19 +13,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const conexionBD_1 = __importDefault(require("../../configuracion/conexion/conexionBD"));
-class programaDAO_borrar {
-    static eliminarPorId(sqlBuscar, parametros, res) {
+class AccesosDAO_buscar {
+    static encontrarIdAcceso(sqlBuscar, parametros, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield conexionBD_1.default.result(sqlBuscar, parametros)
+            yield conexionBD_1.default.one(sqlBuscar, parametros)
                 .then((dato) => {
                 console.log(dato);
-                res.status(200).json({ respuesta: dato.rowCount });
+                res.status(200).json({ 'Tu ID es': dato });
             })
                 .catch((mierror) => {
                 console.log(mierror);
-                return res.status(400).json({ msg: 'Error borrando acceso' });
+                return res.status(400).json({ msg: 'Error buscando acceso' });
             });
         });
     }
 }
-exports.default = programaDAO_borrar;
+exports.default = AccesosDAO_buscar;

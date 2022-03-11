@@ -36,7 +36,18 @@ CREATE TABLE programas(
 );
 Alter table pk_programas owner to user_node;
 
+CREATE table accesos(
+    cod_accesos serial not null,
+    correo_acceso varchar(200) not null unique,
+    clave_acceso varchar(200)not null ,
+    constraint pk_accesos primary key(cod_accesos)  
+);
+Alter table pk_accesos owner to user_node;
+
 CREATE UNIQUE INDEX indice_nompro ON programas (nombre_programa);
+CREATE UNIQUE INDEX indice_correr ON accesos (correo_acceso);
+
+
 
 Alter table materiapensum
     add constraint fk_materiapen_ref_materias foreign key (cod_materia)

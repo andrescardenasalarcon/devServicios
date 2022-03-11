@@ -13,19 +13,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const conexionBD_1 = __importDefault(require("../../configuracion/conexion/conexionBD"));
-class programaDAO_borrar {
-    static eliminarPorId(sqlBuscar, parametros, res) {
+class AccesosDAO_Crear {
+    static crearAccesos(sqlConfirmar, sqlCrear, parametros, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield conexionBD_1.default.result(sqlBuscar, parametros)
-                .then((dato) => {
-                console.log(dato);
-                res.status(200).json({ respuesta: dato.rowCount });
+            yield conexionBD_1.default.task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                const dato = yield consulta.one(sqlConfirmar, parametros);
+                if (dato.cantidad == 0) {
+                    return yield consulta.one(sqlCrear, parametros);
+                }
+                else {
+                    return { cod_materia: 0 };
+                }
+            }))
+                .then((respuesta) => {
+                if (respuesta.cod_materia != 0) {
+                    res.status(200).json({ respuesta: 'Materia Creada', nuevoCodigo: respuesta.cod_materia });
+                }
+                else {
+                    console.log(respuesta);
+                    res.status(402).json({ respuesta: 'Error creando registro, probablmente este repetido' });
+                }
             })
                 .catch((mierror) => {
                 console.log(mierror);
-                return res.status(400).json({ msg: 'Error borrando acceso' });
+                res.status(400).json({ respuesta: 'Error en las consultas ', mierror });
             });
         });
     }
 }
-exports.default = programaDAO_borrar;
+exports.default = AccesosDAO_Crear;

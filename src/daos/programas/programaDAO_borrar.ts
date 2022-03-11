@@ -11,7 +11,7 @@ class programaDAO_borrar{
             })
             .catch((mierror) => {
                 console.log(mierror)
-                return res.status(400).json({ msg: 'Error borrando progrmaa' });
+                return res.status(400).json({ msg: 'Error borrando acceso' });
             });
     }
 }
