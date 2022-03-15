@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const AccesoDAO_Respuesta_1 = __importDefault(require("./AccesoDAO_Respuesta"));
 const conexionBD_1 = __importDefault(require("../../configuracion/conexion/conexionBD"));
-class AccesosDAO_buscar {
+class AccesosDAO_Login {
     static encontrarIdAcceso(sqlBuscar, parametros, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield conexionBD_1.default.oneOrNone(sqlBuscar, parametros)
@@ -28,4 +28,4 @@ class AccesosDAO_buscar {
         });
     }
 }
-exports.default = AccesosDAO_buscar;
+exports.default = AccesosDAO_Login;

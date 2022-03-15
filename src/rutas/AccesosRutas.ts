@@ -1,6 +1,5 @@
 import { Router } from "express";
-import accesosControlador_Buscar from "../controladores/accesos/Accesoscontrolador";
-
+import accesosControlador from "../controladores/accesos/AccesosControlador";
 class AccesosRutas {
     public rutaAccesoApi: Router;
     constructor() {
@@ -8,7 +7,7 @@ class AccesosRutas {
         this.configuracion();
     }
     public configuracion(){
-        this.rutaAccesoApi.post('/accesos',accesosControlador_Buscar.busqueUnoAcceso);
+        this.rutaAccesoApi.post('/accesos',accesosControlador.busqueUnoAcceso);
     }
 }
 

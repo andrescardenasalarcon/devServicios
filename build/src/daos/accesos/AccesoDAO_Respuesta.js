@@ -12,20 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const AccesoDAO_Respuesta_1 = __importDefault(require("./AccesoDAO_Respuesta"));
-const conexionBD_1 = __importDefault(require("../../configuracion/conexion/conexionBD"));
-class AccesosDAO_buscar {
-    static encontrarIdAcceso(sqlBuscar, parametros, res) {
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+class AccesoDAO_Respuesta {
+    static procesar(registro, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield conexionBD_1.default.oneOrNone(sqlBuscar, parametros)
-                .then((dato) => {
-                return AccesoDAO_Respuesta_1.default.procesar(dato, res);
-            })
-                .catch((mierror) => {
-                console.log(mierror);
-                return res.status(400).json({ msg: 'Error buscando acceso' });
-            });
+            if (registro != null) {
+                console.log(registro);
+                ///vamos a crear el token
+                const miToken = jsonwebtoken_1.default.sign({ codigo: registro.codAccesos, role: registro.codRoles, dosDev: 'eso somos' }, 'LaClaveVaAqui', { expiresIn: '8h' });
+                return res.status(200).json({ miToken: miToken });
+            }
+            else {
+                return res.status(401).json({ mensaje: 'Usuario incorrecto' });
+            }
         });
     }
 }
-exports.default = AccesosDAO_buscar;
+exports.default = AccesoDAO_Respuesta;

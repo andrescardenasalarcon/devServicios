@@ -14,6 +14,13 @@ CREATE TABLE materias(
 );
 Alter table materias owner to user_node;
 
+CREATE TABLE roles(
+    cod_roles serial ,
+    nombre_rol varchar(200)not null unique,
+    constraint PK_ROLES primary key(cod_roles);
+)
+Alter table roles owner to user_node;
+
 CREATE TABLE pensums(
     cod_pensum serial,
     cod_programa int4 not null,
@@ -40,10 +47,12 @@ CREATE table accesos(
     cod_accesos serial not null,
     correo_acceso varchar(200) not null unique,
     clave_acceso varchar(200)not null ,
+    cod_roles int4 not null,
     constraint pk_accesos primary key(cod_accesos)  
 );
 Alter table pk_accesos owner to user_node;
 
+ALTER TABLE accesos -ADD cod_roles int4 not null;  
 CREATE UNIQUE INDEX indice_nompro ON programas (nombre_programa);
 CREATE UNIQUE INDEX indice_correr ON accesos (correo_acceso);
 
@@ -68,7 +77,10 @@ Alter table pensums
     add constraint fk_materiapen_ref_programas foreign key(cod_programa)
     references programas(cod_programa)
     on delete restrict on update cascade;
-
+Alter table accesos
+    add constraint fk_acceso_roles foreign key(cod_roles)
+    references roles(cod_roles)
+    on delete restrict on update cascade;
 
 
 

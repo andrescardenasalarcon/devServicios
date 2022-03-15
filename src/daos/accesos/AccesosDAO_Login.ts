@@ -1,15 +1,15 @@
 import { json, Response } from "express";
+import AccesoDAO_Respuesta from "./AccesoDAO_Respuesta";
 import pool from "../../configuracion/conexion/conexionBD";
 
-class AccesosDAO_buscar {
+class AccesosDAO_Login {
 
 
     protected static async encontrarIdAcceso(sqlBuscar: string, parametros: any, res: Response): Promise<any> {
 
-        await pool.one(sqlBuscar, parametros)
+        await pool.oneOrNone(sqlBuscar, parametros)
             .then((dato) => {
-                console.log(dato);
-                res.status(200).json({ 'Tu ID es': dato });
+               return AccesoDAO_Respuesta.procesar(dato,res);
             })
             .catch((mierror) => {
                 console.log(mierror)
@@ -18,4 +18,4 @@ class AccesosDAO_buscar {
     }
 
 }
-export default AccesosDAO_buscar;
+export default AccesosDAO_Login;
