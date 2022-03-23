@@ -19,7 +19,7 @@ class AccesoDAO_Respuesta {
             if (registro != null) {
                 console.log(registro);
                 ///vamos a crear el token
-                const miToken = jsonwebtoken_1.default.sign({ codigo: registro.codAccesos, role: registro.codRoles, dosDev: 'eso somos' }, 'LaClaveVaAqui', { expiresIn: '8h' });
+                const miToken = jsonwebtoken_1.default.sign({ codigo: registro.codAccesos, correo: registro.correoAcceso, role: registro.codRoles, dosDev: 'eso somos' }, 'LaClaveVaAqui', { expiresIn: '8h' });
                 return res.status(200).json({ miToken: miToken });
             }
             else {

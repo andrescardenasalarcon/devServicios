@@ -1,6 +1,7 @@
 import cors from 'cors';
 import morgan from 'morgan';
 import express from 'express';
+import validacion from '../../middleware/Validacion';
 import programasRutas from '../../rutas/ProgramasRutas';
 import semestresRutas from '../../rutas/SemestresRutas';
 import materiasRutas from '../../rutas/MateriasRutas';
@@ -28,9 +29,10 @@ class Servidor {
     public activarRutas(): void {
         this.app.use('/appi/programas', programasRutas);
         this.app.use('/appi/semestres', semestresRutas);
-        this.app.use('/appi/materias', materiasRutas);
+        this.app.use('/appi/materias', validacion.delToken, materiasRutas);
         this.app.use('/appi/pensum', pensumRutas);
         this.app.use('/appi/accesos', accesosRutas);
+        this.app.use('/appi/privada/materias', validacion.delToken, materiasRutas);
 
     }
     public iniciar(): void {
